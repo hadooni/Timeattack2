@@ -1,11 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { pokemonContext } from "../pages/Dex";
+import MOCK_DATA from "../../mock";
+import { useDispatch } from "react-redux";
+import { addPokemon } from "../redux/modules/pokemonSlice";
 
 const PokemonCard = () => {
-  const { addPokemon, MOCK_DATA } = useContext(pokemonContext);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   return (
     <>
       {MOCK_DATA.map((pokemon) => (
@@ -19,7 +22,7 @@ const PokemonCard = () => {
           <button
             onClick={(e) => {
               e.stopPropagation();
-              addPokemon(pokemon);
+              dispatch(addPokemon(pokemon));
             }}
           >
             추가

@@ -38,7 +38,7 @@ const Dex = () => {
   return (
     <>
       <pokemonContext.Provider
-        value={{ selectedPokemon, removePokemon, addPokemon, MOCK_DATA }}
+        value={{ selectedPokemon, removePokemon, addPokemon }}
       >
         <Dashboard />
         <PokemonList />

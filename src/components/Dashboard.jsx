@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { pokemonContext } from "../pages/Dex";
+import { useSelector } from "react-redux";
 
 const Dashboard = () => {
-  const { selectedPokemon, removePokemon } = useContext(pokemonContext);
+  const selectedPokemon = useSelector((state) => state.pokemon);
   const navigate = useNavigate();
 
   return (
@@ -17,9 +17,12 @@ const Dashboard = () => {
               key={pokemon.id}
               onClick={() => navigate(`/pokemon-detail?id=${pokemon.id}`)}
             >
-              <img src={pokemon.img} alt={`${pokemon.name} 이미지`} />
-              <p>{pokemon.name}</p>
-              <p>{pokemon.number}</p>
+              <img
+                src={pokemon.img_url}
+                alt={`${pokemon.korean_name} 이미지`}
+              />
+              <p>{pokemon.korean_name}</p>
+              <p>{pokemon.id}</p>
               <button
                 onClick={(e) => {
                   e.stopPropagation();
