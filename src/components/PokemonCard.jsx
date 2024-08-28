@@ -1,25 +1,31 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { pokemonContext } from "../pages/Dex";
 
-const PokemonCard = ({ pokemon, onAdd }) => {
-  const { img_url, korean_name, id } = pokemon;
+const PokemonCard = () => {
+  const { addPokemon, MOCK_DATA } = useContext(pokemonContext);
   const navigate = useNavigate();
   return (
     <>
-      <StPokemonCard onClick={() => navigate(`/pokemon-detail?id=${id}`)}>
-        <img src={img_url} alt={korean_name} />
-        <p>{korean_name}</p>
-        <p>No. {id}</p>
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onAdd();
-          }}
+      {MOCK_DATA.map((pokemon) => (
+        <StPokemonCard
+          key={pokemon.id}
+          onClick={() => navigate(`/pokemon-detail?id=${pokemon.id}`)}
         >
-          추가
-        </button>
-      </StPokemonCard>
+          <img src={pokemon.img_url} alt={pokemon.korean_name} />
+          <p>{pokemon.korean_name}</p>
+          <p>No. {pokemon.id}</p>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              addPokemon(pokemon);
+            }}
+          >
+            추가
+          </button>
+        </StPokemonCard>
+      ))}
     </>
   );
 };
@@ -27,8 +33,10 @@ const PokemonCard = ({ pokemon, onAdd }) => {
 export default PokemonCard;
 
 const StPokemonCard = styled.div`
-  width: 150px;
+  background-color: white;
+  width: 130px;
   height: 220px;
+  margin: 10px;
   text-align: center;
   cursor: pointer;
 `;

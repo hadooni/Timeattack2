@@ -2,19 +2,11 @@ import React from "react";
 import PokemonCard from "./PokemonCard";
 import styled from "styled-components";
 
-const PokemonList = ({ MOCK_DATA, addPokemon }) => {
+const PokemonList = () => {
   return (
     <>
       <StContainer>
-        {MOCK_DATA.map((pokemon) => (
-          <PokemonCard
-            key={pokemon.id}
-            pokemon={pokemon}
-            onAdd={() => {
-              addPokemon(pokemon);
-            }}
-          />
-        ))}
+        <PokemonCard />
       </StContainer>
     </>
   );
@@ -23,8 +15,9 @@ const PokemonList = ({ MOCK_DATA, addPokemon }) => {
 export default PokemonList;
 
 const StContainer = styled.div`
-  background-color: yellow;
+  background-color: #ffe4fa;
   width: 1000px;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
+  border-radius: 10px;
 `;

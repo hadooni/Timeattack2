@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { pokemonContext } from "../pages/Dex";
 
-const Dashboard = ({ selectedPokemon, removePokemon }) => {
+const Dashboard = () => {
+  const { selectedPokemon, removePokemon } = useContext(pokemonContext);
   const navigate = useNavigate();
 
   return (
@@ -39,10 +41,12 @@ export default Dashboard;
 const StContainer = styled.div`
   width: 1000px;
   height: 320px;
-  background-color: orange;
+  background-color: #ececec;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 10px;
+  margin-bottom: 10px;
 `;
 
 const StPokemonContainer = styled.div`
@@ -56,4 +60,5 @@ const StPokemonCard = styled.div`
   width: 120px;
   height: 220px;
   text-align: center;
+  cursor: pointer;
 `;
